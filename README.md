@@ -228,8 +228,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Base64Decode`](./conversion/base64.go#L57):  Base64Decode decodes the received input base64 string into a byte slice. The implementation follows the RFC4648 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc4648#section-4
 2. [`Base64Encode`](./conversion/base64.go#L19):  Base64Encode encodes the received input bytes slice into a base64 string. The implementation follows the RFC4648 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc4648#section-4
-3. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L25):  BinaryToDecimal() function that will take Binary number as string, and return it's Decimal equivalent as integer.
-4. [`DecimalToBinary`](./conversion/decimaltobinary.go#L32):  DecimalToBinary() function that will take Decimal number as int, and return it's Binary equivalent as string.
+3. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L25):  BinaryToDecimal() function that will take Binary number as string, and return its Decimal equivalent as integer.
+4. [`DecimalToBinary`](./conversion/decimaltobinary.go#L32):  DecimalToBinary() function that will take Decimal number as int, and return its Binary equivalent as string.
 5. [`FuzzBase64Encode`](./conversion/base64_test.go#L113): No description provided.
 6. [`HEXToRGB`](./conversion/rgbhex.go#L10):  HEXToRGB splits an RGB input (e.g. a color in hex format; 0x<color-code>) into the individual components: red, green and blue
 7. [`IntToRoman`](./conversion/inttoroman.go#L17):  IntToRoman converts an integer value to a roman numeral string. An error is returned if the integer is not between 1 and 3999.
@@ -313,7 +313,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 17. [`Max`](./dynamic/knapsack.go#L11):  Max function - possible duplicate
 18. [`NthCatalanNumber`](./dynamic/catalan.go#L13):  NthCatalan returns the n-th Catalan Number Complexity: O(n²)
 19. [`NthFibonacci`](./dynamic/fibonacci.go#L6):  NthFibonacci returns the nth Fibonacci Number
-
+20. [`TrapRainWater`](./dynamic/traprainwater.go#L17): Calculate the amount of trapped rainwater between bars represented by an elevation map using dynamic programming.
 ---
 </details><details>
 	<summary> <strong> dynamicarray </strong> </summary>	
@@ -473,12 +473,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 5. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
 6. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
 7. [`KruskalMST`](./graph/kruskal.go#L23): No description provided.
-8. [`LowestCommonAncestor`](./graph/lowestcommonancestor.go#L111):  For each node, we will precompute its ancestor above him, its ancestor two nodes above, its ancestor four nodes above, etc. Let's call `jump[j][u]` is the `2^j`-th ancestor above the node `u` with `u` in range `[0, numbersVertex)`, `j` in range `[0,MAXLOG)`. These information allow us to jump from any node to any ancestor above it in `O(MAXLOG)` time.
-9. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
-10. [`NewTree`](./graph/lowestcommonancestor.go#L84): No description provided.
-11. [`NewUnionFind`](./graph/unionfind.go#L24):  Initialise a new union find data structure with s nodes
-12. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
-13. [`Topological`](./graph/topological.go#L7):  Topological assumes that graph given is valid and that its possible to get a topological ordering. constraints are array of []int{a, b}, representing an edge going from a to b
+8. [`PrimMST`](./graph/prim.go#30): Computes the minimum spanning tree of a weighted undirected graph
+9. [`LowestCommonAncestor`](./graph/lowestcommonancestor.go#L111):  For each node, we will precompute its ancestor above him, its ancestor two nodes above, its ancestor four nodes above, etc. Let's call `jump[j][u]` is the `2^j`-th ancestor above the node `u` with `u` in range `[0, numbersVertex)`, `j` in range `[0,MAXLOG)`. These information allow us to jump from any node to any ancestor above it in `O(MAXLOG)` time.
+10. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
+11. [`NewTree`](./graph/lowestcommonancestor.go#L84): No description provided.
+12. [`NewUnionFind`](./graph/unionfind.go#L24):  Initialise a new union find data structure with s nodes
+13. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
+14. [`Topological`](./graph/topological.go#L7):  Topological assumes that graph given is valid and that its possible to get a topological ordering. constraints are array of []int{a, b}, representing an edge going from a to b
+15. [`Edmond-Karp`](./graph/edmondkarp.go#L43): Computes the maximum possible flow between a pair of s-t vertices in a weighted graph
 
 ---
 ##### Types
@@ -850,6 +852,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`GenerateElementSet`](./math/permutation/heaps.go#L37): No description provided.
 2. [`Heaps`](./math/permutation/heaps.go#L8):  Heap's Algorithm for generating all permutations of n objects
+3. [`NextPermutation`](./math/permutation/next_permutation.go#8): A solution to find next permutation of an integer array in constant memory
 
 ---
 </details><details>
@@ -1218,6 +1221,19 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 1. [`Decrypt`](./cipher/xor/xor.go#L19):  Decrypt decrypts with Xor encryption
 2. [`Encrypt`](./cipher/xor/xor.go#L10):  Encrypt encrypts with Xor encryption after converting each character to byte The returned value might not be readable because there is no guarantee which is within the ASCII range If using other type such as string, []int, or some other types, add the statements for converting the type to []byte.
 3. [`FuzzXOR`](./cipher/xor/xor_test.go#L108): No description provided.
+
+---
+</details>
+
+#####  Package rail fence is a classical type of transposition cipher ref : https://en.wikipedia.org/wiki/Rail_fence_cipher
+
+---
+##### Functions:
+
+1. [`Encrypt`](.cipher/railfence/railfence.go#L7):  Encrypt encrypts a message using rail fence cipher
+2. [`Decrypt`](.cipher/railfence/railfence.go#L44):  decrypt decrypts a message using rail fence cipher
+3. [`TestEncrypt`](.cipher/railfence/railfence_test.go#L7) Test function for Encrypt
+4. [`TestDecrypt`](.cipher/railfence/railfence_test.go#L50) Test function for Decrypt
 
 ---
 </details>

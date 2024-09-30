@@ -28,12 +28,6 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 	// Create a new UnionFind data structure with 'n' nodes
 	u := NewUnionFind(n)
 
-	// Initialize each node in the UnionFind data structure
-	for i := 0; i < n; i++ {
-		u.parent[i] = i
-		u.size[i] = 1
-	}
-
 	// Sort the edges in non-decreasing order based on their weights
 	sort.SliceStable(edges, func(i, j int) bool {
 		return edges[i].Weight < edges[j].Weight
@@ -48,7 +42,7 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 			// Add the weight of the edge to the total cost
 			cost += edge.Weight
 			// Merge the sets containing the start and end vertices of the current edge
-			u = u.Union(int(edge.Start), int(edge.End))
+			u.Union(int(edge.Start), int(edge.End))
 		}
 	}
 
